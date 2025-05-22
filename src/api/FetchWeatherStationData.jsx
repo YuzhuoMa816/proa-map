@@ -1,9 +1,19 @@
+import axiosInstance from "../axioInstance";
+
 export const getWeatherStations = async () => {
-  const response = await fetch("http://localhost:3000/weather-station");
+  try {
+    const response = await axiosInstance.get("/weather-station");
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    // data structure validation
+    if (!response.data || !Array.isArray(response.data)) {
+      console.error("Unexpected data format:", response.data);
+      return [];
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch weather stations:", error);
+
+    return [];
   }
-
-  return await response.json();
 };
