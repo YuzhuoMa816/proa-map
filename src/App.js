@@ -1,11 +1,9 @@
 import "./App.css";
 
-import Map from "./components/StationMap";
+import Map from "./page/StationMap";
 function App() {
   return (
     <div>
-      <h1>Weather Stations Map</h1>
-
       <Map />
     </div>
   );
